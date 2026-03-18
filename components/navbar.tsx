@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Phone } from "lucide-react"
@@ -23,6 +24,7 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
+
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -37,26 +39,25 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border"
-            : "bg-transparent"
-        }`}
+        className={'fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/30 backdrop-blur-md shadow-lg '}
       >
         <nav className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-20 lg:h-24">
+          <div className="flex items-center justify-between h-18 lg:h-16">
             {/* Logo */}
-            <Link href="/" className="flex flex-col items-start">
-              <motion.span
-                className="font-serif text-2xl lg:text-3xl text-primary tracking-wide"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
+            <Link href="/" className="flex flex-col items-start ">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               >
-                Sale & Pepe
-              </motion.span>
-              <span className="text-[10px] lg:text-xs text-muted-foreground tracking-[0.3em] uppercase">
-                Ristorante Italiano
-              </span>
+                <Image
+                  src="/logo.png"
+                  alt="Sale & Pepe Logo"
+                  width={180}
+                  height={60} // 👈 approx aspect ratio maintain karo
+                  className="object-cover mx-auto"
+                  priority
+                />
+              </motion.div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -68,14 +69,14 @@ export function Navbar() {
                   className="relative group"
                 >
                   <span
-                    className={`text-sm tracking-wider uppercase transition-colors duration-300 ${
-                      pathname === link.href
-                        ? "text-primary"
-                        : "text-foreground/80 hover:text-primary"
-                    }`}
+                    className={`text-sm tracking-wider uppercase transition-colors duration-300 ${pathname === link.href
+                      ? "text-white"
+                      : " text-black font-semibold hover:text-white"
+                      }`}
                   >
                     {link.label}
                   </span>
+
                   <motion.span
                     className="absolute -bottom-1 left-0 h-px bg-primary"
                     initial={{ width: 0 }}
@@ -91,16 +92,17 @@ export function Navbar() {
             <div className="hidden lg:flex items-center gap-4">
               <a
                 href="tel:+917990494482"
-                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300"
+                className="flex items-center gap-2 text-black font-semibold hover:text-white transition-colors duration-300"
               >
                 <Phone className="w-4 h-4" />
                 <span className="text-sm">+91 79904 94482</span>
               </a>
+
               <Link href="/contact#reservation">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-6 py-3 bg-primary text-primary-foreground text-sm font-medium tracking-wider uppercase rounded-sm transition-all duration-300 hover:bg-primary/90"
+                  className="px-2 font-semibold py-1 bg-primary text-primary-foreground text-[12px] font-medium tracking-wider uppercase rounded-sm transition-all duration-300 hover:bg-primary/90"
                 >
                   Reserve Table
                 </motion.button>
@@ -143,16 +145,16 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`font-serif text-3xl tracking-wider transition-colors duration-300 ${
-                      pathname === link.href
-                        ? "text-primary"
-                        : "text-foreground hover:text-primary"
-                    }`}
+                    className={`font-serif text-3xl tracking-wider transition-colors duration-300 ${pathname === link.href
+                      ? "text-primary"
+                      : "text-foreground hover:text-primary"
+                      }`}
                   >
                     {link.label}
                   </Link>
                 </motion.div>
               ))}
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -165,6 +167,7 @@ export function Navbar() {
                   </button>
                 </Link>
               </motion.div>
+
               <motion.a
                 href="tel:+917990494482"
                 initial={{ opacity: 0, y: 20 }}

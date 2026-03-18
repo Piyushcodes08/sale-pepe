@@ -19,7 +19,7 @@ export function HeroSection() {
           sizes="100vw"
         />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/30 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/60 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/0 via-transparent to-background/30" />
       </div>
 
@@ -36,27 +36,20 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-primary text-sm tracking-[0.4em] uppercase mb-6"
+            className="text-primary text-lg font-semibold tracking-[0.4em] uppercase mb-6"
           >
             Fine Italian Dining
           </motion.p>
 
           {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-serif text-4xl md:text-5xl lg:text-7xl text-foreground leading-tight mb-6 text-balance"
-          >
-            Authentic Italian Dining Experience in Ahmedabad
-          </motion.h1>
+          
 
           {/* Subheading */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-muted-foreground text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             Handcrafted pastas, wood-fired pizzas, and timeless flavors that
             transport you to the heart of Italy
@@ -87,23 +80,6 @@ export function HeroSection() {
                 View Menu
               </motion.button>
             </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2 text-muted-foreground"
-          >
-            <span className="text-xs tracking-wider uppercase">Scroll</span>
-            <ChevronDown className="w-5 h-5" />
           </motion.div>
         </motion.div>
       </div>
